@@ -1,3 +1,7 @@
+
+![Vista previa de la aplicación](assets/image.png)
+
+
 # Administrador de Empleados
 
 Este proyecto es una aplicación web simple para gestionar una lista de empleados utilizando LocalStorage del Navegador. Permite agregar, editar y eliminar empleados de una tabla de manera dinámica.
