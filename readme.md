@@ -1,6 +1,6 @@
 # Administrador de Empleados
 
-Este proyecto es una aplicación web simple para gestionar una lista de empleados utilizando LocalStorage de Google. Permite agregar, editar y eliminar empleados de una tabla de manera dinámica.
+Este proyecto es una aplicación web simple para gestionar una lista de empleados utilizando LocalStorage del Navegador. Permite agregar, editar y eliminar empleados de una tabla de manera dinámica.
 
 ## Características
 - **Agregar empleados:** Ingresa el nombre, apellido y edad de un empleado y agrégalo a la lista.
