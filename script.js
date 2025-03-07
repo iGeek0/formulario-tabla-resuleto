@@ -30,9 +30,26 @@ const cargarEmpleadosDesdeLocalStorage = () => {
     const cuerpoTabla = document.getElementById("bodyTablaEmpleados");
     cuerpoTabla.innerHTML = ""; // Limpiar la tabla
     const empleados = obtenerEmpleadosDesdeLocalStorage();
-    empleados.forEach((empleado, indice) => agregarEmpleadoATabla(empleado, indice));
-    // la siguiente linea es equivalente a la anterior
-    // empleados.forEach(agregarEmpleadoATabla);
+    empleados.forEach((empleado, indice) => {
+        const cuerpoTabla = document.getElementById("bodyTablaEmpleados");
+        const fila = document.createElement("tr");
+        fila.innerHTML = `
+            <td>${indice + 1}</td>
+            <td>${empleado.nombre}</td>
+            <td>${empleado.apellido}</td>
+            <td>${empleado.edad}</td>
+            <td class="text-center">
+                <button class="btn btn-warning btn-edit" data-indice="${indice}">Editar</button>
+                <button class="btn btn-danger btn-delete" data-indice="${indice}">Eliminar</button>
+            </td>
+        `;
+        cuerpoTabla.appendChild(fila);
+
+        // Event listeners para editar y eliminar
+        fila.querySelector('.btn-edit').addEventListener('click', () => prepararEdicionEmpleado(indice));
+        fila.querySelector('.btn-delete').addEventListener('click', () => eliminarEmpleado(indice));
+    });
+
 };
 
 const agregarNuevoEmpleado = (empleado) => {
@@ -61,25 +78,6 @@ const actualizarEmpleadosEnLocalStorage = (empleados) => {
     cargarEmpleadosDesdeLocalStorage();
 };
 
-const agregarEmpleadoATabla = (empleado, indice) => {
-    const cuerpoTabla = document.getElementById("bodyTablaEmpleados");
-    const fila = document.createElement("tr");
-    fila.innerHTML = `
-        <td>${indice + 1}</td>
-        <td>${empleado.nombre}</td>
-        <td>${empleado.apellido}</td>
-        <td>${empleado.edad}</td>
-        <td class="text-center">
-            <button class="btn btn-warning btn-edit" data-indice="${indice}">Editar</button>
-            <button class="btn btn-danger btn-delete" data-indice="${indice}">Eliminar</button>
-        </td>
-    `;
-    cuerpoTabla.appendChild(fila);
-
-    // Event listeners para editar y eliminar
-    fila.querySelector('.btn-edit').addEventListener('click', () => prepararEdicionEmpleado(indice));
-    fila.querySelector('.btn-delete').addEventListener('click', () => eliminarEmpleado(indice));
-};
 
 // Editar empleado
 const prepararEdicionEmpleado = (indice) => {
